@@ -69,4 +69,14 @@ describe "#translate" do
   # * write a test asserting that capitalized words are still capitalized (but with a different initial capital letter, of course)
   # * retain the punctuation from the original phrase
 
+  it "preserves the capitalization of words" do
+    translate("My favorite Beatles song is Across the Universe")
+    .should == "Ymay avoritefay Eatlesbay ongsay isay Acrossay ethay Universeay"
+  end
+
+  it "retains original punctuation." do
+    translate("I like broccoli, spinach, and carrots, but not brussel sprouts.")
+    .should == "Iay ikelay occolibray, inachspay, anday arrotscay, utbay otnay usselbray outsspray."
+  end
+
 end
