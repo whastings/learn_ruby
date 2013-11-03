@@ -69,6 +69,12 @@ describe Temperature do
         end
       end
     end
+
+    describe "bad initialization" do
+      it "raises an error if no initial temperature is passed" do
+        expect { Temperature.new({}) }.to raise_error(ArgumentError, "No temperature given.")
+      end
+    end
   end
 
   # Factory Method is a design pattern, not a Ruby language feature.
@@ -97,6 +103,34 @@ describe Temperature do
   # run *all* the tests during your refactoring, to make sure you did it right
   #
   describe "utility class methods" do
+
+    describe "#ctof" do
+      it "converts freezing" do
+        Temperature.ctof(0).should == 32
+      end
+
+      it "converts boiling" do
+        Temperature.ctof(100).should == 212
+      end
+
+      it "converts body temperature" do
+        Temperature.ctof(37).should be_within(0.1).of(98.6)
+      end
+    end
+
+    describe "#ftoc" do
+      it "converts freezing" do
+        Temperature.ftoc(32).should == 0
+      end
+
+      it "converts boiling" do
+        Temperature.ftoc(212).should == 100
+      end
+
+      it "converts body temperature" do
+        Temperature.ftoc(98.6).should == 37
+      end
+    end
 
   end
 
