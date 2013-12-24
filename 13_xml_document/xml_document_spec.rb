@@ -72,6 +72,6 @@ describe XmlDocument do
     "      <ok_fine be='that_way'/>\n" +
     "    </come_back>\n" +
     "  </goodbye>\n" +
-    "</hello>\n"
+    "</hello>"
   end
 end

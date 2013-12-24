@@ -7,9 +7,8 @@ class XmlDocument
   end
 
   def method_missing(method, *args, &block)
-puts @indentation.to_s + " " + method.to_s
     tag = ""
-    starting_indentation = (@indentation - 2) > 0 ? 0 : 2
+    starting_indentation = (@indentation - 2) < 0 ? 0 : 2
     add(tag, "<#{method}", false, starting_indentation)
     attributes = args[0]
     if attributes.is_a?(Hash)
@@ -24,8 +23,7 @@ puts @indentation.to_s + " " + method.to_s
       result = block.call
       @indentation -=2 if @indent
       add(tag, result, true)
-      end_indentation = (@indentation - 2) > 0 ? (@indentation - 2) : 0
-      add(tag, "</#{method}>", false, end_indentation)
+      add(tag, "</#{method}>", false)
     end
     tag
   end
